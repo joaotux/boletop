@@ -1,30 +1,42 @@
 package br.com.umdesenvolvedor.boletop;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import br.com.umdesenvolvedor.boletop.utils.GeraDigitoVerificador;
-import br.com.umdesenvolvedor.boletop.utils.GeraFatorVencimento;
-import br.com.umdesenvolvedor.boletop.utils.GerarNossoNumero;
-import br.com.umdesenvolvedor.boletop.utils.StringUtils;
+import br.com.umdesenvolvedor.boletop.bean.Agencia;
+import br.com.umdesenvolvedor.boletop.bean.Banco;
+import br.com.umdesenvolvedor.boletop.bean.Boleto;
+import br.com.umdesenvolvedor.boletop.bean.Carteira;
+import br.com.umdesenvolvedor.boletop.bean.Cedente;
+import br.com.umdesenvolvedor.boletop.bean.ContaBancaria;
+import br.com.umdesenvolvedor.boletop.bean.Pessoa;
+import br.com.umdesenvolvedor.boletop.bean.Titulo;
+import br.com.umdesenvolvedor.boletop.camposLivres.CampoLivreSicoob;
+import br.com.umdesenvolvedor.boletop.enumerado.EnumAceite;
+import br.com.umdesenvolvedor.boletop.enumerado.EnumEspecieDoc;
+import br.com.umdesenvolvedor.boletop.enumerado.EnumMoeda;
+import br.com.umdesenvolvedor.boletop.utils.GeraCodigoDigitavel;
 
 public class BoletoTeste {
-	
+
 	public static void main(String args[]) {
-		GeraDigitoVerificador digito = new GeraDigitoVerificador();
+		ContaBancaria conta = new ContaBancaria(756, new Banco(756, "Sicoob", "452154545", "Coperativa"), new Agencia(4521, "Teste"), new Carteira(2, "Teste"));
+
+		Pessoa pessoa = new Pessoa("João Rafael", "01550582232", null);
+		Cedente cedente = new Cedente(pessoa, conta, 1L);
 		
-		CalculaBase11 base11 = new CalculaBase11();
-		//base11.getMod11("75691327101007926005248406001");
+		Titulo titulo = new Titulo(12, 1, new BigDecimal(500.5), new BigDecimal(0), new BigDecimal(0),
+				new BigDecimal(0), new BigDecimal(500.0), EnumAceite.N, EnumEspecieDoc.DS, EnumMoeda.R$,
+				LocalDate.now());
 		
-		//75696000130307615124415074780014
+		Boleto boleto = new Boleto("Qualquer banco", "Teste 01", null, cedente, titulo);
 		
-		//75691327100100792600752484060018
+		CampoLivreSicoob sicoob = new CampoLivreSicoob(boleto, "4587");
 		
-		//System.out.println(digito.getDV11("7569600013030761512441507478001477910000043789"));
+		GeraCodigoDigitavel codigo = new GeraCodigoDigitavel(boleto, "4587", sicoob);
+		String codigoDigitavel = codigo.gerar();
 		
-		//LocalDate vencimento = LocalDate.of(2019, 02, 28);
-		//System.out.println(GeraFatorVencimento.getCalculaFator(vencimento));
-		
-		System.out.println(GerarNossoNumero.getNossoNumero("1", "1-9", "21"));
-		
+		System.out.println(codigoDigitavel);
+
 	}
 }

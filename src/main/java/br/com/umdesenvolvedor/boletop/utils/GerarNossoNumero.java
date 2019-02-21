@@ -19,7 +19,6 @@ public class GerarNossoNumero {
 	 */
 	public static String getNossoNumero(String numCoperativa, String codCliente, String nossoNum) {
 		//guardo o nosso numero para retorná-lo no final
-		String nossoNumero = nossoNum;
 		String numero = "";
 		int[] consCalculo = new int[] {3, 1, 9, 7};
 		int soma = 0;
@@ -30,7 +29,7 @@ public class GerarNossoNumero {
 		// completa os valores com zeros a esquerda
 		numCoperativa = StringUtils.addZerosEsquerda(numCoperativa, 4);
 		codCliente = StringUtils.addZerosEsquerda(codCliente.replace("-", ""), 10);
-		nossoNum = StringUtils.addZerosEsquerda(nossoNum, 7);
+		nossoNum = StringUtils.addZerosEsquerda(nossoNum, 6);
 
 		//concateno os dados para realizar os cálculos
 		numero = numCoperativa + codCliente + nossoNum;
@@ -60,7 +59,7 @@ public class GerarNossoNumero {
 		if (resto == 1 || resto == 0)
 			dv = 0;
 
-		return nossoNumero + "-" + dv;
+		return nossoNum + "-" + dv;
 	}
 
 }

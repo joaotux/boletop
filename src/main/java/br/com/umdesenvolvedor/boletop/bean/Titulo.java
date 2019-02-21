@@ -2,6 +2,7 @@ package br.com.umdesenvolvedor.boletop.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import br.com.umdesenvolvedor.boletop.enumerado.EnumAceite;
 import br.com.umdesenvolvedor.boletop.enumerado.EnumEspecieDoc;
@@ -12,6 +13,7 @@ public class Titulo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int numero;
+	private int numParcela;
 	private BigDecimal valor;
 	private BigDecimal desconto;
 	private BigDecimal deducao;
@@ -20,11 +22,14 @@ public class Titulo implements Serializable {
 	private EnumAceite aceite;
 	private EnumEspecieDoc especieDocumento;
 	private EnumMoeda moeda;
+	private LocalDate vencimento;
 
-	public Titulo(int numero, BigDecimal valor, BigDecimal desconto, BigDecimal deducao, BigDecimal mora,
-			BigDecimal valorCobrado, EnumAceite aceite, EnumEspecieDoc especieDocumento, EnumMoeda moeda) {
+	public Titulo(int numero, int numParcela, BigDecimal valor, BigDecimal desconto, BigDecimal deducao,
+			BigDecimal mora, BigDecimal valorCobrado, EnumAceite aceite, EnumEspecieDoc especieDocumento,
+			EnumMoeda moeda, LocalDate vencimento) {
 		super();
 		this.numero = numero;
+		this.numParcela = numParcela;
 		this.valor = valor;
 		this.desconto = desconto;
 		this.deducao = deducao;
@@ -33,10 +38,15 @@ public class Titulo implements Serializable {
 		this.aceite = aceite;
 		this.especieDocumento = especieDocumento;
 		this.moeda = moeda;
+		this.vencimento = vencimento;
 	}
 
 	public int getNumero() {
 		return numero;
+	}
+
+	public int getNumParcela() {
+		return numParcela;
 	}
 
 	public BigDecimal getValor() {
@@ -69,6 +79,10 @@ public class Titulo implements Serializable {
 
 	public EnumMoeda getMoeda() {
 		return moeda;
+	}
+
+	public LocalDate getVencimento() {
+		return vencimento;
 	}
 
 	@Override

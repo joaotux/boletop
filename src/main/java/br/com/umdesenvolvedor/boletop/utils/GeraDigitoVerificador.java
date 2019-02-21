@@ -54,15 +54,10 @@ public class GeraDigitoVerificador {
 		int multiplicador = 2;
 		int[] numerosMult = new int[numero.length()];
 		
-		System.out.println("Tamanho " + numero.length());
-		System.out.println("numero " + numero);
-
 		for (int i = (numero.length() - 1); i >= 0; i--) {
 			int numAtual = Integer.parseInt(String.valueOf(numero.charAt(i)));
 
 			numerosMult[i] = numAtual * multiplicador;
-
-			System.out.println("numAtual " + numAtual + " x " + multiplicador + " = " + numerosMult[i]);
 
 			multiplicador++;
 
@@ -80,11 +75,6 @@ public class GeraDigitoVerificador {
 		
 		int dv = 11 - resto;
 		
-		System.out.println("soma " + soma);
-		System.out.println("resto " + resto);
-		System.out.println("dv " + dv);
-		
-
 		if (dv < 2 || dv > 9)
 			dv = 1;
 		
